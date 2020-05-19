@@ -39,8 +39,7 @@ async def get_elements_on_page(link: str, get_videos: bool, put_to: list, semaph
         if parent_tag["data-ext"] not in IMAGE_FORMATS and not get_videos:
             continue
 
-        object_name = parent_tag["data-tags"] + \
-            " " + parent_tag["data-post-id"]
+        object_name = parent_tag["data-post-id"]
 
         children = parent_tag.find("a", text="Image Only")
         link = children["href"]
