@@ -35,7 +35,7 @@ def main(tag: str, pages_to_parse: int = 10, download_videos: bool = True, skip_
     loop.run_until_complete(
         asyncio.wait(
             [get_elements_on_page(BASE_LINK.format(
-                tag, i), download_folder, links_to_download, semaphore) for i in range(1, actual_pages)]
+                tag, i), download_folder, links_to_download, semaphore) for i in range(1, actual_pages+1)]
         )
     )
 
@@ -45,7 +45,8 @@ def main(tag: str, pages_to_parse: int = 10, download_videos: bool = True, skip_
         loop = asyncio.get_event_loop()
         loop.run_until_complete(
             asyncio.wait(
-                [download_file(t, download_folder, semaphore, vebrose, skip_existing) for t in links_to_download]
+                [download_file(t, download_folder, semaphore, vebrose,
+                               skip_existing) for t in links_to_download]
             )
         )
 
